@@ -56,20 +56,22 @@ android {
 
 dependencies {
 
+    // ANDROIDX
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
 
+    // COMPOSE
     implementation(platform(libs.compose.bom))
-
+    implementation(libs.compose.material3)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.graphics)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.material3)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.test.ext)
-    androidTestImplementation(libs.test.espresso.core)
-
     debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
+
+    // TEST
+    androidTestImplementation(libs.test.espresso.core)
+    androidTestImplementation(libs.test.ext)
+    testImplementation(libs.junit)
+
 }
