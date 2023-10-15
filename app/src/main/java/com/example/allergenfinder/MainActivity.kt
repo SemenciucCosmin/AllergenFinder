@@ -3,9 +3,6 @@ package com.example.allergenfinder
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
 import com.example.allergenfinder.ui.theme.AllergenFinderTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,9 +10,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AllergenFinderTheme {
-                Surface(modifier = Modifier.fillMaxSize(),) {
-
-                }
+                AllergenFinderApp()
             }
         }
     }

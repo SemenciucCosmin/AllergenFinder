@@ -69,6 +69,9 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
 
+    // NAVIGATION
+    implementation(libs.navigation.compose)
+
     // TEST
     androidTestImplementation(libs.test.espresso.core)
     androidTestImplementation(libs.test.ext)

@@ -7,16 +7,19 @@ androidx-lifecycle-runtime-ktx = "2.6.2"
 # COMPOSE
 compose-bom = "2023.10.00"
 
-# TEST
-junit = "4.13.2"
-test-ext = "1.1.5"
-test-espresso-core = "3.5.1"
+# NAVIGATION
+navigation-compose = "2.7.4"
 
 # PLUGINS
 android-gradle-plugin = "8.1.0"
 google-ksp = "1.8.10-1.0.9"
 detekt = "1.23.1"
 kotlin-android = "1.8.10"
+
+# TEST
+junit = "4.13.2"
+test-ext = "1.1.5"
+test-espresso-core = "3.5.1"
 
 
 [libraries]
@@ -32,6 +35,9 @@ compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+# NAVIGATION
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 
 # TEST
 test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "test-espresso-core" }
