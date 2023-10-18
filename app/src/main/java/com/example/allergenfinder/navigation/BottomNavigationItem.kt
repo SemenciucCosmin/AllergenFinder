@@ -2,26 +2,26 @@ package com.example.allergenfinder.navigation
 
 import com.example.allergenfinder.R
 
-data class NavigationItem(
+data class BottomNavigationItem(
     val label: Int,
     val icon: Int,
     val route: String
 )
 
-fun bottomNavigationItems() = listOf (
-    NavigationItem(
+val bottomNavigationItems = listOf(
+    BottomNavigationItem(
         label = R.string.lbl_route_home,
         icon = R.drawable.ic_home,
-        route = Route.Home.route
+        route = NavigationDestination.Home.route
     ),
-    NavigationItem(
+    BottomNavigationItem(
         label = R.string.lbl_route_advices,
         icon = R.drawable.ic_advices,
-        route = Route.Advices.route
+        route = NavigationDestination.Advices.route
     ),
-    NavigationItem(
+    BottomNavigationItem(
         label = R.string.lbl_route_preferences,
         icon = R.drawable.ic_preferences,
-        route = Route.Preferences.route
+        route = NavigationDestination.Preferences.route
     )
 )
