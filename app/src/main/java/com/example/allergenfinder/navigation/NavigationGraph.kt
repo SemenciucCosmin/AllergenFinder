@@ -5,9 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.allergenfinder.routes.AdvicesRoute
-import com.example.allergenfinder.routes.HomeRoute
+import com.example.allergenfinder.routes.HistoryRoute
 import com.example.allergenfinder.routes.PreferencesRoute
+import com.example.allergenfinder.routes.ScanRoute
 
 @Composable
 fun NavigationGraph(
@@ -16,14 +16,14 @@ fun NavigationGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavigationDestination.Home.route,
+        startDestination = NavigationDestination.History.route,
         modifier = modifier
     ) {
-        composable(NavigationDestination.Home.route) {
-            HomeRoute()
+        composable(NavigationDestination.History.route) {
+            HistoryRoute()
         }
-        composable(NavigationDestination.Advices.route) {
-            AdvicesRoute()
+        composable(NavigationDestination.Scan.route) {
+            ScanRoute()
         }
         composable(NavigationDestination.Preferences.route) {
             PreferencesRoute()

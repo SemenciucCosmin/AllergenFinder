@@ -2,7 +2,7 @@
     <string name="app_name">AllergenFinder</string>
 
     <!--    ROUTES    -->
-    <string name="lbl_route_home">Home</string>
-    <string name="lbl_route_advices">Advices</string>
+    <string name="lbl_route_history">History</string>
+    <string name="lbl_route_scan">Scan</string>
     <string name="lbl_route_preferences">Preferences</string>
 </resources>

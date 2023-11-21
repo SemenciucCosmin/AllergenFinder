@@ -5,8 +5,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun AdvicesRoute() {
+fun ScanRoute() {
     Surface {
-        Text(text = "Advices")
+        Text(text = "Scan")
     }
 }

@@ -10,14 +10,14 @@ data class BottomNavigationItem(
 
 val bottomNavigationItems = listOf(
     BottomNavigationItem(
-        label = R.string.lbl_route_home,
-        icon = R.drawable.ic_home,
-        route = NavigationDestination.Home.route
+        label = R.string.lbl_route_history,
+        icon = R.drawable.ic_history,
+        route = NavigationDestination.History.route
     ),
     BottomNavigationItem(
-        label = R.string.lbl_route_advices,
-        icon = R.drawable.ic_advices,
-        route = NavigationDestination.Advices.route
+        label = R.string.lbl_route_scan,
+        icon = R.drawable.ic_scan,
+        route = NavigationDestination.Scan.route
     ),
     BottomNavigationItem(
         label = R.string.lbl_route_preferences,
