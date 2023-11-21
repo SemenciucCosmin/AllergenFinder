@@ -37,7 +37,5 @@ build/
 
 app/build/
 
-gradle/
-
 #NDK
 obj/
