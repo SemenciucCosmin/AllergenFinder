@@ -1,12 +1,12 @@
-package com.example.allergenfinder.routes
+package com.example.allergenfinder.ui.routes
 
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun HistoryRoute() {
+fun PreferencesRoute() {
     Surface {
-        Text(text = "Home")
+        Text(text = "Preferences")
     }
 }
