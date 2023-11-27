@@ -1,8 +1,8 @@
 [versions]
 # ANDROIDX
 androidx-activity-compose = "1.8.1"
-androidx-core-ktx = '1.12.0'
-androidx-lifecycle-runtime-ktx = "2.6.2"
+androidx-core-ktx = "1.12.0"
+androidx-lifecycle-runtime = "2.6.2"
 androidx-navigation-runtime-ktx = "2.7.5"
 
 # CAMERA
@@ -12,8 +12,15 @@ barcode-scanning = "17.2.0"
 # COMPOSE
 compose-bom = "2023.10.01"
 
+# KOIN
+koin-android = "3.4.2"
+koin-compose = "3.4.4"
+
 # NAVIGATION
 navigation-compose = "2.7.5"
+
+# PERMISSIONS
+accompanist-permissions = "0.33.2-alpha"
 
 # PLUGINS
 android-gradle-plugin = "8.1.0"
@@ -31,7 +38,8 @@ test-espresso-core = "3.5.1"
 # ANDROIDX
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime-ktx" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle-runtime" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "androidx-navigation-runtime-ktx" }
 
 # CAMERA
@@ -39,7 +47,6 @@ androidx-camera_camera2 = { group = "androidx.camera", name = "camera-camera2", 
 androidx-camera_lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "androidx-camera" }
 androidx-camera_view = { group = "androidx.camera", name = "camera-view", version.ref = "androidx-camera" }
 barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "barcode-scanning" }
-
 
 # COMPOSE
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -49,8 +56,15 @@ compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 
+# KOIN
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin-android" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin-compose" }
+
 # NAVIGATION
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+
+# PERMISSIONS
+google-accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
 
 # TEST
 test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "test-espresso-core" }

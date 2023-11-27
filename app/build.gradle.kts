@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     // CAMERA
     implementation(libs.androidx.camera.camera2)
@@ -76,8 +77,15 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
 
+    // KOIN
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
     // NAVIGATION
     implementation(libs.navigation.compose)
+
+    // PERMISSIONS
+    implementation(libs.google.accompanist.permissions)
 
     // TEST
     androidTestImplementation(libs.test.espresso.core)
