@@ -1,4 +1,4 @@
-package com.example.allergenfinder
+package com.example.allergenfinder.presentation.app
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding

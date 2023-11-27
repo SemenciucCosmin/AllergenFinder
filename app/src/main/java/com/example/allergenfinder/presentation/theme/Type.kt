@@ -1,4 +1,4 @@
-package com.example.allergenfinder.ui.theme
+package com.example.allergenfinder.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

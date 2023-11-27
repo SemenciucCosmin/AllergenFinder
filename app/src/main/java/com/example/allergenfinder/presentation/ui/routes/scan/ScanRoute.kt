@@ -1,4 +1,4 @@
-package com.example.allergenfinder.ui.routes
+package com.example.allergenfinder.presentation.ui.routes.scan
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -37,22 +37,13 @@ fun ScanRoute() {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraProvideFuture = remember { ProcessCameraProvider.getInstance(context) }
-    var hasCameraPermission by remember {
+    val hasCameraPermission by remember {
         mutableStateOf(
             ContextCompat.checkSelfPermission(
                 context,
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
         )
-    }
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission(),
-        onResult = { granted ->
-            hasCameraPermission = granted
-        }
-    )
-    LaunchedEffect(key1 = true) {
-        launcher.launch(Manifest.permission.CAMERA)
     }
     Column(modifier = Modifier.fillMaxSize()) {
         if (hasCameraPermission) {

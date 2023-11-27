@@ -1,4 +1,4 @@
-package com.example.allergenfinder.ui.theme
+package com.example.allergenfinder.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

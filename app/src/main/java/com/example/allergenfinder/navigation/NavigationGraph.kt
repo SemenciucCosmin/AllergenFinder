@@ -5,9 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.allergenfinder.ui.routes.HistoryRoute
-import com.example.allergenfinder.ui.routes.PreferencesRoute
-import com.example.allergenfinder.ui.routes.ScanRoute
+import com.example.allergenfinder.presentation.ui.routes.history.HistoryRoute
+import com.example.allergenfinder.presentation.ui.routes.preferences.PreferencesRoute
+import com.example.allergenfinder.presentation.ui.routes.scan.ScanRoute
 
 @Composable
 fun NavigationGraph(
