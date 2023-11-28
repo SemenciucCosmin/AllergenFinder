@@ -1,7 +1,8 @@
 package com.example.allergenfinder.navigation
 
 sealed class NavigationDestination(val route: String) {
-    object History: NavigationDestination("history_route")
-    object Scan: NavigationDestination("scan_route")
-    object Preferences: NavigationDestination("preferences_route")
+    data object History: NavigationDestination("history_route")
+    data object Preferences: NavigationDestination("preferences_route")
+    data object Product: NavigationDestination("product_route/{code}")
+    data object Scan: NavigationDestination("scan_route")
 }
