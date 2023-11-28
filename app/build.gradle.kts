@@ -84,6 +84,10 @@ dependencies {
     // NAVIGATION
     implementation(libs.navigation.compose)
 
+    // RETROFIT
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.converter.moshi)
+
     // PERMISSIONS
     implementation(libs.google.accompanist.permissions)
 
