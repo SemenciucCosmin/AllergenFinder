@@ -1,4 +1,11 @@
 <resources>
+    <!--    ERROR    -->
+    <string name="lbl_access_error_message">Access error</string>
+    <string name="lbl_authorization_error_message">Authorization error</string>
+    <string name="lbl_network_error_message">Network error</string>
+    <string name="lbl_not_found_error_message">Resource not found error</string>
+    <string name="lbl_server_error_message">Server error</string>
+
     <!--    GENERAL    -->
     <string name="app_name">AllergenFinder</string>
     <string name="lbl_ok">OK</string>
