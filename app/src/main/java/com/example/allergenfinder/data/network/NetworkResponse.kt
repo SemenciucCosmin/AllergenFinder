@@ -3,6 +3,13 @@ package com.example.allergenfinder.data.network
 import com.example.allergenfinder.R
 
 sealed class NetworkResponse<out T> {
+    open fun getOrNull(): T? {
+        return when(this){
+            is Success -> data
+            is Error -> null
+        }
+    }
+
     data class Success<out T>(val data: T) : NetworkResponse<T>()
     sealed class Error<out T>(open val messageId: Int) : NetworkResponse<T>() {
         data class Access<out T>(
