@@ -1,6 +1,7 @@
 [versions]
 # ANDROIDX
 androidx-activity-compose = "1.8.1"
+androidx-constraintlayout = "1.0.1"
 androidx-core-ktx = "1.12.0"
 androidx-lifecycle-runtime = "2.6.2"
 androidx-navigation-runtime-ktx = "2.7.5"
@@ -40,6 +41,7 @@ test-espresso-core = "3.5.1"
 [libraries]
 # ANDROIDX
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
+androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidx-constraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle-runtime" }

@@ -58,9 +58,11 @@ dependencies {
 
     // ANDROIDX
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
 
     // CAMERA
     implementation(libs.androidx.camera.camera2)
@@ -73,7 +75,6 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.graphics)
-    implementation(libs.androidx.navigation.runtime.ktx)
     debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
 
