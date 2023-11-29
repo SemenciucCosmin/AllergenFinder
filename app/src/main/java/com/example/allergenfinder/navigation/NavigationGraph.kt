@@ -1,5 +1,9 @@
 package com.example.allergenfinder.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -30,7 +34,33 @@ fun NavigationGraph(
         composable(NavigationDestination.Preferences.route) {
             PreferencesRoute()
         }
-        composable(route = NavigationDestination.Product.route) { navBackStackEntry ->
+        composable(
+            route = NavigationDestination.Product.route,
+            enterTransition = {
+                slideIntoContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                    animationSpec = tween(700)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                    animationSpec = tween(700)
+                )
+            },
+            popEnterTransition = {
+                slideIntoContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                    animationSpec = tween(700)
+                )
+            },
+            popExitTransition = {
+                slideOutOfContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                    animationSpec = tween(700)
+                )
+            }
+        ) { navBackStackEntry ->
             val code = navBackStackEntry.arguments?.getString(CODE_ARGUMENT_KEY)
             code?.let { ProductRoute(code) }
         }

@@ -38,11 +38,6 @@ fun ScanRoute() {
                             newValue = code
                         )
                     )
-                    navController.popBackStack(
-                        route = NavigationDestination.Scan.route,
-                        inclusive = true,
-                        saveState = false
-                    )
                 },
                 modifier = Modifier.weight(1f)
             )

@@ -37,7 +37,10 @@ fun ScanScreen(
                 .build()
             imageAnalysis.setAnalyzer(
                 ContextCompat.getMainExecutor(context),
-                CodeAnalyzer { result -> onScanned(result) }
+                CodeAnalyzer { result ->
+                    cameraProvideFuture.get().unbindAll()
+                    onScanned(result)
+                }
             )
 
             try {
