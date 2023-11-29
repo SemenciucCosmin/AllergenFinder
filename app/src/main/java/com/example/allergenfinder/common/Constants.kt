@@ -1,3 +1,3 @@
 package com.example.allergenfinder.common
 
-const val CODE_ARGUMENT_KEY = "code"
+const val BARCODE_ARGUMENT_KEY = "barcode"

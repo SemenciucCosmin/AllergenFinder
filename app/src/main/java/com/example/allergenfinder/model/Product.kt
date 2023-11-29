@@ -1,9 +1,7 @@
 package com.example.allergenfinder.model
 
-import com.example.allergenfinder.common.BLANK
-
 data class Product(
-    val code: String,
+    val barcode: String,
     val allergens: List<String> = listOf(),
     val brands: String,
     val countries: List<String> = listOf(),

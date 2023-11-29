@@ -9,6 +9,7 @@
     <!--    GENERAL    -->
     <string name="app_name">AllergenFinder</string>
     <string name="lbl_ok">OK</string>
+    <string name="lbl_placeholder_enter_barcode_manually">Enter barcode manually</string>
 
     <!--    PERMISSIONS    -->
     <string name="lbl_permission_dialog_grant">Grant permission</string>

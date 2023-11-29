@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import androidx.compose.ui.graphics.Color
 import com.example.allergenfinder.data.datasource.api.model.IngredientDto
 import com.example.allergenfinder.data.datasource.api.model.NutrimentsDto
 import com.example.allergenfinder.data.datasource.api.model.ProductDto
@@ -14,6 +15,9 @@ import com.example.allergenfinder.model.Product
 val String.Companion.BLANK: String
     get() = ""
 
+val Color.Companion.TransparentWhite: Color
+    get() = Color(0x77FFFFFF)
+
 fun Activity.openAppSettings() {
     Intent(
         Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
@@ -22,7 +26,7 @@ fun Activity.openAppSettings() {
 }
 
 fun ProductDto.toProduct(): Product? {
-    if (code == null) return null
+    if (barcode == null) return null
     if (productInfo == null) return null
     if (productInfo.brands == null) return null
     if (productInfo.ingredientsText == null) return null
@@ -33,7 +37,7 @@ fun ProductDto.toProduct(): Product? {
     val ingredients = productInfo.ingredients?.mapNotNull { it.toIngredient() }
 
     return Product(
-        code = code,
+        barcode = barcode,
         allergens = productInfo.allergens ?: listOf(),
         brands = productInfo.brands,
         countries = productInfo.countries ?: listOf(),

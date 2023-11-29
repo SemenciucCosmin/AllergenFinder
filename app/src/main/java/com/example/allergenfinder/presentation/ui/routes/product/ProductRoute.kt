@@ -18,10 +18,10 @@ import com.example.allergenfinder.presentation.ui.viewmodel.ProductViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ProductRoute(code: String) {
+fun ProductRoute(barcode: String) {
     val productViewModel = koinViewModel<ProductViewModel>()
     val product by productViewModel.product.collectAsStateWithLifecycle()
-    productViewModel.onScanned(code)
+    productViewModel.fetchProduct(barcode)
 
     Column(
         modifier = Modifier.fillMaxSize().background(Color.LightGray)

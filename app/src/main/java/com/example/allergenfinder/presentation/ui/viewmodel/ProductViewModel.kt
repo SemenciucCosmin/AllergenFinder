@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class ProductViewModel(private val productRepository: ProductRepository): ViewModel() {
     private val _product = MutableStateFlow<Product?>(null)
     val product = _product.asStateFlow()
-    fun onScanned(barcode: String) {
+    fun fetchProduct(barcode: String) {
         viewModelScope.launch {
             val product = productRepository.fetchProduct(barcode)
             _product.update { product }
