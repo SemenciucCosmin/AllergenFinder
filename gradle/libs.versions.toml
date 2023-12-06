@@ -10,6 +10,9 @@ androidx-navigation-runtime-ktx = "2.7.5"
 androidx-camera = "1.4.0-alpha02"
 barcode-scanning = "17.2.0"
 
+# COIL
+coil-compose = "2.2.2"
+
 # COMPOSE
 compose-bom = "2023.10.01"
 
@@ -52,6 +55,9 @@ androidx-camera_camera2 = { group = "androidx.camera", name = "camera-camera2", 
 androidx-camera_lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "androidx-camera" }
 androidx-camera_view = { group = "androidx.camera", name = "camera-view", version.ref = "androidx-camera" }
 barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "barcode-scanning" }
+
+# COIL
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }
 
 # COMPOSE
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }

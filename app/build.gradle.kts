@@ -70,6 +70,9 @@ dependencies {
     implementation(libs.androidx.camera.view)
     implementation(libs.barcode.scanning)
 
+    // COIL
+    implementation(libs.coil.compose)
+
     // COMPOSE
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material3)
