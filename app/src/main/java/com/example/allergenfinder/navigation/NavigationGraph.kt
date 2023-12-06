@@ -12,6 +12,7 @@ import com.example.allergenfinder.presentation.ui.routes.history.HistoryRoute
 import com.example.allergenfinder.presentation.ui.routes.preferences.PreferencesRoute
 import com.example.allergenfinder.presentation.ui.routes.product.ProductRoute
 import com.example.allergenfinder.presentation.ui.routes.scan.ScanRoute
+import java.net.URLDecoder
 
 @Composable
 fun NavigationGraph(
@@ -56,8 +57,9 @@ fun NavigationGraph(
                 )
             }
         ) { navBackStackEntry ->
-            val code = navBackStackEntry.arguments?.getString(BARCODE_ARGUMENT_KEY)
-            code?.let { ProductRoute(code) }
+            val encodedArgument = navBackStackEntry.arguments?.getString(BARCODE_ARGUMENT_KEY)
+            val barcode = URLDecoder.decode(encodedArgument, "UTF-8")
+            barcode?.let { ProductRoute(barcode) }
         }
         composable(NavigationDestination.Scan.route) {
             ScanRoute()

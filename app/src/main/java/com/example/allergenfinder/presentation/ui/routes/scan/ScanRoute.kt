@@ -36,9 +36,9 @@ fun ScanRoute() {
             // Clear focus in case the virtual keyboard is visible
             focusManager.clearFocus()
             navController.navigate(
-                NavigationDestination.Product.route.replace(
-                    oldValue = BARCODE_ARGUMENT_KEY,
-                    newValue = barcode
+                NavigationDestination.Product.routeWithArgument(
+                    argument = barcode,
+                    key = BARCODE_ARGUMENT_KEY
                 )
             )
         }
