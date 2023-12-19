@@ -26,50 +26,41 @@ fun Activity.openAppSettings() {
 }
 
 fun ProductDto.toProduct(): Product? {
-    if (barcode == null) return null
-    if (productInfo == null) return null
-    if (productInfo.brands == null) return null
-    if (productInfo.ingredientsText == null) return null
-    if (productInfo.ingredientsAllergensText == null) return null
-    if (productInfo.nutritionalScoreGrade == null) return null
-    if (productInfo.nutritionalScore == null) return null
-    if (productInfo.quantity == null) return null
-    val ingredients = productInfo.ingredients?.mapNotNull { it.toIngredient() }
-
     return Product(
-        barcode = barcode,
-        allergens = productInfo.allergens ?: listOf(),
-        brands = productInfo.brands,
+        barcode = barcode ?: return null,
+        allergens = productInfo?.allergens ?: listOf(),
+        productName = productInfo?.productName ?: return null,
+        brand = productInfo.brand ?: String.BLANK,
         countries = productInfo.countries ?: listOf(),
-        imageUrl = productInfo.imageUrl,
-        ingredients = ingredients ?: listOf(),
-        ingredientsText = productInfo.ingredientsText,
-        ingredientsAllergensText = productInfo.ingredientsAllergensText,
-        nutriments = productInfo.nutriments?.toNutriments() ?: Nutriments(),
-        nutritionalScoreGrade = productInfo.nutritionalScoreGrade,
-        nutritionalScore = productInfo.nutritionalScore,
-        quantity = productInfo.quantity
+        imageUrl = productInfo.imageUrl ?: return null,
+        ingredients = productInfo.ingredients?.mapNotNull { it.toIngredient() } ?: return null,
+        ingredientsText = productInfo.ingredientsText ?: return null,
+        ingredientsAllergensText = productInfo.ingredientsAllergensText ?: return null,
+        nutriments = productInfo.nutriments?.toNutriments() ?: return null,
+        nutritionalScoreGrade = productInfo.nutritionalScoreGrade ?: return null,
+        nutritionalScore = productInfo.nutritionalScore ?: return null,
+        quantity = productInfo.quantity ?: return null
     )
 }
 
 fun IngredientDto.toIngredient(): Ingredient? {
     return Ingredient(
         id = id ?: return null,
-        percentEstimate = percentEstimate ?: return null,
-        text = text ?: return null
+        text = text ?: return null,
+        percentEstimate = percentEstimate ?: return null
     )
 }
 
-fun NutrimentsDto.toNutriments(): Nutriments {
+fun NutrimentsDto.toNutriments(): Nutriments? {
     return Nutriments(
-        carbohydrates = carbohydrates,
-        energyKcal = energyKcal,
-        fat = fat,
-        fiber = fiber,
-        proteins = proteins,
-        salt = salt,
-        saturatedFat = saturatedFat,
-        sodium = sodium,
-        sugars = sugars
+        carbohydrates = carbohydrates ?: return null,
+        energyKcal = energyKcal ?: return null,
+        fat = fat ?: return null,
+        fiber = fiber ?: return null,
+        proteins = proteins ?: return null,
+        salt = salt ?: return null,
+        saturatedFat = saturatedFat ?: return null,
+        sodium = sodium ?: return null,
+        sugars = sugars ?: return null
     )
 }

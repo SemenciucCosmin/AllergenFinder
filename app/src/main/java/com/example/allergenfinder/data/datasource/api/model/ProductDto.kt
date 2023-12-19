@@ -9,7 +9,8 @@ data class ProductDto(
 
 data class ProductInfoDto(
     @field:Json(name = "allergens_tags") val allergens: List<String>?,
-    @field:Json(name = "brands") val brands: String?,
+    @field:Json(name = "product_name_en") val productName: String?,
+    @field:Json(name = "brands") val brand: String?,
     @field:Json(name = "countries_tags") val countries: List<String>?,
     @field:Json(name = "image_url") val imageUrl: String?,
     @field:Json(name = "ingredients") val ingredients: List<IngredientDto>?,
