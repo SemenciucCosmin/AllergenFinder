@@ -28,7 +28,7 @@ fun ProductScreen(product: Product) {
         AsyncImage(
             model = product.imageUrl,
             contentDescription = null,
-            contentScale = ContentScale.Fit,
+            contentScale = ContentScale.Crop,
             error = painterResource(R.drawable.ic_no_image),
             modifier = Modifier
                 .fillMaxWidth()
@@ -44,10 +44,8 @@ fun ProductScreen(product: Product) {
 
         Divider(modifier = Modifier.padding(horizontal = 16.dp))
 
-        val text = "${product.productName} - ${product.brand} - ${product.quantity}"
-
         Text(
-            text = text,
+            text = "text",
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier

@@ -9,6 +9,7 @@ import com.example.allergenfinder.data.datasource.api.model.IngredientDto
 import com.example.allergenfinder.data.datasource.api.model.NutrimentsDto
 import com.example.allergenfinder.data.datasource.api.model.ProductDto
 import com.example.allergenfinder.model.Ingredient
+import com.example.allergenfinder.model.NutriScore
 import com.example.allergenfinder.model.Nutriments
 import com.example.allergenfinder.model.Product
 
@@ -37,8 +38,7 @@ fun ProductDto.toProduct(): Product? {
         ingredientsText = productInfo.ingredientsText ?: return null,
         ingredientsAllergensText = productInfo.ingredientsAllergensText ?: return null,
         nutriments = productInfo.nutriments?.toNutriments() ?: return null,
-        nutritionalScoreGrade = productInfo.nutritionalScoreGrade ?: return null,
-        nutritionalScore = productInfo.nutritionalScore ?: return null,
+        nutriScore = NutriScore.getNutriScoreByGrade(productInfo.nutriScoreGrade) ?: return null,
         quantity = productInfo.quantity ?: return null
     )
 }

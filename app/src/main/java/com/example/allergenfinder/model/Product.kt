@@ -11,8 +11,7 @@ data class Product(
     val ingredientsText: String,
     val ingredientsAllergensText: String,
     val nutriments: Nutriments,
-    val nutritionalScoreGrade: String,
-    val nutritionalScore: Int,
+    val nutriScore: NutriScore,
     val quantity: String,
 )
 

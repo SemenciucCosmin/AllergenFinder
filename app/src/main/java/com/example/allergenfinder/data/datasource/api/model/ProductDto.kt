@@ -17,8 +17,7 @@ data class ProductInfoDto(
     @field:Json(name = "ingredients_text_en") val ingredientsText: String?,
     @field:Json(name = "ingredients_text_with_allergens_en") val ingredientsAllergensText: String?,
     @field:Json(name = "nutriments") val nutriments: NutrimentsDto?,
-    @field:Json(name = "nutriscore_grade") val nutritionalScoreGrade: String?,
-    @field:Json(name = "nutriscore_score") val nutritionalScore: Int?,
+    @field:Json(name = "nutriscore_grade") val nutriScoreGrade: String?,
     @field:Json(name = "quantity") val quantity: String?,
 )
 
