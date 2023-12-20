@@ -22,7 +22,7 @@ import com.example.allergenfinder.R
 import kotlinx.coroutines.delay
 
 @Composable
-fun LoadingOverlay() {
+fun LoadingScreen() {
     var angle by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(angle) {

@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.allergenfinder.permission.viewmodel.ProductUiState
+import com.example.allergenfinder.presentation.ui.components.ErrorScreen
+import com.example.allergenfinder.presentation.ui.components.LoadingScreen
 import com.example.allergenfinder.presentation.ui.viewmodel.ProductViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -14,8 +16,8 @@ fun ProductRoute(barcode: String) {
     productViewModel.fetchProduct(barcode)
 
     when (productUiState) {
-        is ProductUiState.Loading -> { }
-        is ProductUiState.Error -> { }
+        is ProductUiState.Loading -> LoadingScreen()
+        is ProductUiState.Error -> ErrorScreen()
         is ProductUiState.Success -> {
             ProductScreen((productUiState as ProductUiState.Success).product)
         }
