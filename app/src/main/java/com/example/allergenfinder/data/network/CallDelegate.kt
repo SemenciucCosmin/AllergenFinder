@@ -6,7 +6,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-abstract class CallDelegate<T, U>(private val call: Call<T>) : Call<U> {
+abstract class CallDelegate<T, U>(private val call: Call<T>) :
+    Call<U> {
     final override fun clone(): Call<U> = cloneImpl()
 
     override fun execute(): Response<U> = throw NotImplementedError()

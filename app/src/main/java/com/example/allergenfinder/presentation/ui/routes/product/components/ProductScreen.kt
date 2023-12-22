@@ -27,6 +27,7 @@ import coil.compose.AsyncImage
 import com.example.allergenfinder.R
 import com.example.allergenfinder.model.Product
 import com.example.allergenfinder.presentation.ui.components.IngredientsSection
+import com.example.allergenfinder.presentation.ui.components.NutrimentsTable
 
 @Composable
 fun ProductScreen(product: Product) {
@@ -48,7 +49,7 @@ fun ProductScreen(product: Product) {
                 .clip(RoundedCornerShape(16.dp))
                 .border(
                     width = 2.dp,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.outline,
                     shape = RoundedCornerShape(16.dp)
                 )
         )
@@ -95,8 +96,6 @@ fun ProductScreen(product: Product) {
 
         IngredientsSection(ingredients = product.ingredients)
 
-        Column {
-
-        }
+        NutrimentsTable(nutriments = product.nutriments)
     }
 }

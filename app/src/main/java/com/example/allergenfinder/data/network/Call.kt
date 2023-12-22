@@ -6,14 +6,14 @@ import retrofit2.Response
 import java.io.IOException
 import javax.net.ssl.HttpsURLConnection
 
-class ResourceCall<T>(
+class Call<T>(
     private val call: Call<T>
 ) : CallDelegate<T, Resource<T>>(call) {
     override fun enqueueImpl(callback: Callback<Resource<T>>) {
         call.enqueue(callback(callback))
     }
 
-    override fun cloneImpl(): Call<Resource<T>> = ResourceCall(call.clone())
+    override fun cloneImpl(): Call<Resource<T>> = Call(call.clone())
 
     private fun callback(callback: Callback<Resource<T>>) = object : Callback<T> {
         override fun onResponse(call: Call<T>, response: Response<T>) {
@@ -29,7 +29,7 @@ class ResourceCall<T>(
             }
 
             val success = Response.success(resource)
-            callback.onResponse(this@ResourceCall, success)
+            callback.onResponse(this@Call, success)
         }
 
         override fun onFailure(call: Call<T>, throwable: Throwable) {
@@ -38,7 +38,7 @@ class ResourceCall<T>(
                 else -> Resource.Error.Access()
             }
             val success = Response.success(resource)
-            callback.onResponse(this@ResourceCall, success)
+            callback.onResponse(this@Call, success)
         }
     }
 }

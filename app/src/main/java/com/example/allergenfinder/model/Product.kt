@@ -19,7 +19,7 @@ data class Product(
 data class Ingredient(
     val name: String,
     val percentEstimate: Float,
-    val warningColor: Color,
+    val warningColor: Color = Color.Gray,
 ) {
     val formattedText: String
         get() = "$name $percentEstimate%"

@@ -69,8 +69,7 @@ fun IngredientDto.toIngredient(): Ingredient? {
     val percent = percentEstimate ?: return null
     return Ingredient(
         name = id?.substringAfter(String.SEMICOLON) ?: return null,
-        percentEstimate = percent.roundToOneDecimalPlace(),
-        warningColor = Color.White
+        percentEstimate = percent.roundToOneDecimalPlace()
     )
 }
 

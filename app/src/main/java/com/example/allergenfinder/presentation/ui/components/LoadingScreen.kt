@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,7 +36,7 @@ fun LoadingScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White.copy(alpha = 0.2f))
+            .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_loading),
