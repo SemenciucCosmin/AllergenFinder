@@ -14,12 +14,12 @@ class ProductViewModel(private val productRepository: ProductRepository) : ViewM
     val productUiState = _productUiState.asStateFlow()
     fun fetchProduct(barcode: String) {
         viewModelScope.launch {
-            val product = productRepository.fetchProduct(barcode)
-            _productUiState.update {
-                when (product) {
-                    null -> ProductUiState.Error
-                    else -> ProductUiState.Success(product)
-                }
+            val resource = productRepository.fetchProduct(barcode)
+            resource.getOrNull()?.let { product ->
+                _productUiState.update { ProductUiState.Success(product) }
+            }
+            resource.errorOrNull()?.let { error ->
+                _productUiState.update { ProductUiState.Error(error.messageId) }
             }
         }
     }

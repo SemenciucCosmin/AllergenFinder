@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
-class NetworkResponseCallAdapterFactory : CallAdapter.Factory() {
+class ResourceCallAdapterFactory : CallAdapter.Factory() {
     override fun get(
         returnType: Type,
         annotations: Array<out Annotation>,
@@ -16,9 +16,9 @@ class NetworkResponseCallAdapterFactory : CallAdapter.Factory() {
             Call::class.java -> {
                 val callType = getParameterUpperBound(0, returnType as ParameterizedType)
                 when (getRawType(callType)) {
-                    NetworkResponse::class.java -> {
+                    Resource::class.java -> {
                         val resultType = getParameterUpperBound(0, callType as ParameterizedType)
-                        NetworkResponseCallAdapter(resultType)
+                        ResourceCallAdapter(resultType)
                     }
                     else -> null
                 }

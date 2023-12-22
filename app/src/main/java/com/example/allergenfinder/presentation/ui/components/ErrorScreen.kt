@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.example.allergenfinder.R
 
 @Composable
-fun ErrorScreen() {
+fun ErrorScreen(messageId: Int) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -26,6 +26,6 @@ fun ErrorScreen() {
             contentDescription = null,
             modifier = Modifier.size(50.dp)
         )
-        Text(text = stringResource(id = R.string.lbl_error_message))
+        Text(text = stringResource(id = messageId))
     }
 }

@@ -4,10 +4,10 @@ import retrofit2.Call
 import retrofit2.CallAdapter
 import java.lang.reflect.Type
 
-class NetworkResponseCallAdapter(
+class ResourceCallAdapter(
     private val type: Type
-) : CallAdapter<Type, Call<NetworkResponse<Type>>> {
+) : CallAdapter<Type, Call<Resource<Type>>> {
     override fun responseType(): Type = type
 
-    override fun adapt(call: Call<Type>): Call<NetworkResponse<Type>> = NetworkResponseCall(call)
+    override fun adapt(call: Call<Type>): Call<Resource<Type>> = ResourceCall(call)
 }

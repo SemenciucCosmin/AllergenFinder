@@ -2,9 +2,14 @@ package com.example.allergenfinder.common
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.provider.Settings
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.allergenfinder.data.datasource.api.model.IngredientDto
 import com.example.allergenfinder.data.datasource.api.model.NutrimentsDto
 import com.example.allergenfinder.data.datasource.api.model.ProductDto
@@ -12,12 +17,24 @@ import com.example.allergenfinder.model.Ingredient
 import com.example.allergenfinder.model.NutriScore
 import com.example.allergenfinder.model.Nutriments
 import com.example.allergenfinder.model.Product
+import kotlin.math.roundToInt
 
 val String.Companion.BLANK: String
     get() = ""
 
+val String.Companion.SEMICOLON: String
+    get() = ":"
+
 val Color.Companion.TransparentWhite: Color
     get() = Color(0x77FFFFFF)
+
+fun Float.roundToOneDecimalPlace() = (this * 10).roundToInt() / 10f
+
+fun Int.toPx(): Float = this * Resources.getSystem().displayMetrics.density
+
+fun Modifier.maxHeightIf(condition: Boolean, maxHeight: Dp): Modifier {
+    return if (condition) this.heightIn(0.dp, maxHeight) else this
+}
 
 fun Activity.openAppSettings() {
     Intent(
@@ -27,16 +44,21 @@ fun Activity.openAppSettings() {
 }
 
 fun ProductDto.toProduct(): Product? {
+    val name = if (productInfo?.productNameEn?.isNotBlank() == true) {
+        productInfo.productNameEn
+    } else {
+        productInfo?.productName
+    }
+
     return Product(
         barcode = barcode ?: return null,
         allergens = productInfo?.allergens ?: listOf(),
-        productName = productInfo?.productName ?: return null,
-        brand = productInfo.brand ?: String.BLANK,
-        countries = productInfo.countries ?: listOf(),
-        imageUrl = productInfo.imageUrl ?: return null,
+        name = name ?: return null,
+        brand = productInfo?.brand ?: String.BLANK,
+        countries = productInfo?.countries ?: listOf(),
+        imageUrl = productInfo?.imageUrl ?: return null,
         ingredients = productInfo.ingredients?.mapNotNull { it.toIngredient() } ?: return null,
         ingredientsText = productInfo.ingredientsText ?: return null,
-        ingredientsAllergensText = productInfo.ingredientsAllergensText ?: return null,
         nutriments = productInfo.nutriments?.toNutriments() ?: return null,
         nutriScore = NutriScore.getNutriScoreByGrade(productInfo.nutriScoreGrade) ?: return null,
         quantity = productInfo.quantity ?: return null
@@ -44,10 +66,11 @@ fun ProductDto.toProduct(): Product? {
 }
 
 fun IngredientDto.toIngredient(): Ingredient? {
+    val percent = percentEstimate ?: return null
     return Ingredient(
-        id = id ?: return null,
-        text = text ?: return null,
-        percentEstimate = percentEstimate ?: return null
+        name = id?.substringAfter(String.SEMICOLON) ?: return null,
+        percentEstimate = percent.roundToOneDecimalPlace(),
+        warningColor = Color.White
     )
 }
 

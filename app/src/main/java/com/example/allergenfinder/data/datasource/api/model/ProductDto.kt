@@ -9,13 +9,13 @@ data class ProductDto(
 
 data class ProductInfoDto(
     @field:Json(name = "allergens_tags") val allergens: List<String>?,
+    @field:Json(name = "product_name") val productNameEn: String?,
     @field:Json(name = "product_name_en") val productName: String?,
     @field:Json(name = "brands") val brand: String?,
     @field:Json(name = "countries_tags") val countries: List<String>?,
     @field:Json(name = "image_url") val imageUrl: String?,
     @field:Json(name = "ingredients") val ingredients: List<IngredientDto>?,
     @field:Json(name = "ingredients_text_en") val ingredientsText: String?,
-    @field:Json(name = "ingredients_text_with_allergens_en") val ingredientsAllergensText: String?,
     @field:Json(name = "nutriments") val nutriments: NutrimentsDto?,
     @field:Json(name = "nutriscore_grade") val nutriScoreGrade: String?,
     @field:Json(name = "quantity") val quantity: String?,
@@ -24,7 +24,6 @@ data class ProductInfoDto(
 data class IngredientDto(
     @field:Json(name = "id") val id: String?,
     @field:Json(name = "percent_estimate") val percentEstimate: Float?,
-    @field:Json(name = "text") val text: String?,
 )
 
 data class NutrimentsDto(

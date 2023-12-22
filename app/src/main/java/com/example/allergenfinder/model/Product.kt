@@ -1,25 +1,29 @@
 package com.example.allergenfinder.model
 
+import androidx.compose.ui.graphics.Color
+
 data class Product(
     val barcode: String,
     val allergens: List<String>,
-    val productName: String,
+    val name: String,
     val brand: String,
     val countries: List<String>,
     val imageUrl: String,
     val ingredients: List<Ingredient>,
     val ingredientsText: String,
-    val ingredientsAllergensText: String,
     val nutriments: Nutriments,
     val nutriScore: NutriScore,
     val quantity: String,
 )
 
 data class Ingredient(
-    val id: String,
-    val text: String,
+    val name: String,
     val percentEstimate: Float,
-)
+    val warningColor: Color,
+) {
+    val formattedText: String
+        get() = "$name $percentEstimate%"
+}
 
 data class Nutriments(
     val carbohydrates: Float,
