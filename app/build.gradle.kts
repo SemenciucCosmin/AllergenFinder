@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.ksp)
     alias(libs.plugins.detekt)
 }
 
@@ -91,6 +92,11 @@ dependencies {
     // RETROFIT
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.moshi)
+
+    // ROOM
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
 
     // PERMISSIONS
     implementation(libs.google.accompanist.permissions)

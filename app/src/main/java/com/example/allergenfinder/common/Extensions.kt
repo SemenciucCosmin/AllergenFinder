@@ -13,6 +13,10 @@ import androidx.compose.ui.unit.dp
 import com.example.allergenfinder.data.datasource.api.model.IngredientDto
 import com.example.allergenfinder.data.datasource.api.model.NutrimentsDto
 import com.example.allergenfinder.data.datasource.api.model.ProductDto
+import com.example.allergenfinder.data.datasource.dao.model.AllergenEntity
+import com.example.allergenfinder.data.datasource.dao.model.IngredientEntity
+import com.example.allergenfinder.data.datasource.dao.model.ProductEntity
+import com.example.allergenfinder.data.datasource.dao.model.ProductWithIngredients
 import com.example.allergenfinder.model.Ingredient
 import com.example.allergenfinder.model.NutriScore
 import com.example.allergenfinder.model.Nutriments
@@ -51,16 +55,14 @@ fun ProductDto.toProduct(): Product? {
     }
 
     return Product(
-        barcode = barcode ?: return null,
+        id = barcode ?: return null,
         allergens = productInfo?.allergens ?: listOf(),
         name = name ?: return null,
         brand = productInfo?.brand ?: String.BLANK,
-        countries = productInfo?.countries ?: listOf(),
         imageUrl = productInfo?.imageUrl ?: return null,
         ingredients = productInfo.ingredients?.mapNotNull { it.toIngredient() } ?: return null,
-        ingredientsText = productInfo.ingredientsText ?: return null,
         nutriments = productInfo.nutriments?.toNutriments() ?: return null,
-        nutriScore = NutriScore.getNutriScoreByGrade(productInfo.nutriScoreGrade) ?: return null,
+        nutriScore = NutriScore.getNutriScoreByGrade(productInfo.nutriScoreGrade),
         quantity = productInfo.quantity ?: return null
     )
 }
@@ -84,5 +86,72 @@ fun NutrimentsDto.toNutriments(): Nutriments? {
         saturatedFat = saturatedFat ?: return null,
         sodium = sodium ?: return null,
         sugars = sugars ?: return null
+    )
+}
+
+fun Product.toProductWithIngredientsEntity(): ProductWithIngredients {
+    return ProductWithIngredients(
+        productEntity = ProductEntity(
+            id = id,
+            name = name,
+            brand = brand,
+            imageUrl = imageUrl,
+            carbohydrates = nutriments.carbohydrates,
+            energyKcal = nutriments.energyKcal,
+            fat = nutriments.fat,
+            fiber = nutriments.fiber,
+            proteins = nutriments.proteins,
+            salt = nutriments.salt,
+            saturatedFat = nutriments.saturatedFat,
+            sodium = nutriments.sodium,
+            sugars = nutriments.sugars,
+            nutriScoreGrade = nutriScore.grade,
+            quantity = quantity
+        ),
+        allergens = allergens.map { AllergenEntity(it, id) },
+        ingredients = ingredients.map { it.toIngredientEntity(id) }
+    )
+}
+
+fun Ingredient.toIngredientEntity(productId: String): IngredientEntity {
+    return IngredientEntity(
+        productId = productId,
+        name = name,
+        percentEstimate = percentEstimate,
+        isAllergen = isAllergen,
+        isMatchingAllergen = isMatchingAllergen
+    )
+}
+
+fun ProductWithIngredients.toProduct(): Product {
+    return Product(
+        id = productEntity.id,
+        allergens = allergens.map { it.name },
+        name = productEntity.name,
+        brand = productEntity.brand,
+        imageUrl = productEntity.imageUrl,
+        ingredients = ingredients.map { it.toIngredient() },
+        nutriments = Nutriments(
+            carbohydrates = productEntity.carbohydrates,
+            energyKcal = productEntity.energyKcal,
+            fat = productEntity.fat,
+            fiber = productEntity.fiber,
+            proteins = productEntity.proteins,
+            salt = productEntity.salt,
+            saturatedFat = productEntity.saturatedFat,
+            sodium = productEntity.sodium,
+            sugars = productEntity.sugars
+        ),
+        nutriScore = NutriScore.getNutriScoreByGrade(productEntity.nutriScoreGrade),
+        quantity = productEntity.quantity
+    )
+}
+
+fun IngredientEntity.toIngredient(): Ingredient {
+    return Ingredient(
+        name = name,
+        percentEstimate = percentEstimate,
+        isAllergen = isAllergen,
+        isMatchingAllergen = isMatchingAllergen
     )
 }

@@ -1,7 +1,9 @@
 package com.example.allergenfinder.data.repository
 
 import com.example.allergenfinder.common.toProduct
+import com.example.allergenfinder.common.toProductWithIngredientsEntity
 import com.example.allergenfinder.data.datasource.api.ProductApiService
+import com.example.allergenfinder.data.datasource.dao.ProductDao
 import com.example.allergenfinder.data.network.Resource
 import com.example.allergenfinder.domain.repository.ProductRepository
 import com.example.allergenfinder.model.Product
@@ -29,9 +31,12 @@ val allAllergens = listOf(
     "molluscs"
 )
 
-val userAllergens = listOf<String>("vanillin")
+val userAllergens = listOf("vanillin")
 
-class ProductRepositoryImpl(private val productApiService: ProductApiService) : ProductRepository {
+class ProductRepositoryImpl(
+    private val productApiService: ProductApiService,
+    private val productDao: ProductDao,
+) : ProductRepository {
     override suspend fun fetchProduct(barcode: String): Resource<Product> {
         val apiResource = productApiService.getProductInfo(barcode)
         if (apiResource is Resource.Error) return apiResource.getErrorType()
@@ -44,6 +49,7 @@ class ProductRepositoryImpl(private val productApiService: ProductApiService) : 
             )
         }
         val newProduct = product.copy(ingredients = ingredientsWithAllergens)
+        val productEntity = newProduct.toProductWithIngredientsEntity()
         return Resource.Success(newProduct)
     }
 }

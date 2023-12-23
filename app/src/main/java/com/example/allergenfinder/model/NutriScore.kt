@@ -10,6 +10,8 @@ enum class NutriScore(val grade: String, val imageRes: Int) {
     E("e", R.drawable.ic_nutri_score_e);
 
     companion object {
-        fun getNutriScoreByGrade(grade: String?) = values().firstOrNull { it.grade == grade }
+        fun getNutriScoreByGrade(grade: String?): NutriScore {
+            return values().firstOrNull { it.grade == grade } ?: E
+        }
     }
 }
