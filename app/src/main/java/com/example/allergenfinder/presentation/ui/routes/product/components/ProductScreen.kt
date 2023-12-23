@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,76 +25,87 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.allergenfinder.R
 import com.example.allergenfinder.model.Product
-import com.example.allergenfinder.presentation.ui.components.IngredientsSection
-import com.example.allergenfinder.presentation.ui.components.NutrimentsTable
+import com.example.allergenfinder.presentation.ui.components.OutlineGradientBox
 
 @Composable
 fun ProductScreen(product: Product) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-            .verticalScroll(rememberScrollState())
+    val outlineColor = when {
+        product.hasMatchingAllergens -> Color.Red
+        product.hasAllergens -> Color.Yellow
+        else -> Color.Green
+    }
+
+    OutlineGradientBox(
+        cornerRadius = 16.dp,
+        outlineRadius = 12.dp,
+        outlineColor = outlineColor,
+        modifier = Modifier.padding(10.dp)
     ) {
-        AsyncImage(
-            model = product.imageUrl,
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            error = painterResource(R.drawable.ic_no_image),
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .border(
-                    width = 2.dp,
-                    color = MaterialTheme.colorScheme.outline,
-                    shape = RoundedCornerShape(16.dp)
-                )
-        )
-
-        Divider()
-
-        Row(
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
+                .padding(10.dp)
+                .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = product.name,
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.weight(8f)
-            )
-            Text(
-                text = product.quantity,
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.weight(2f)
-            )
-        }
-
-        Divider()
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(
-                text = product.brand,
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.weight(7f)
-            )
-            Image(
-                painter = painterResource(id = product.nutriScore.imageRes),
+            AsyncImage(
+                model = product.imageUrl,
                 contentDescription = null,
-                modifier = Modifier.weight(3f)
+                contentScale = ContentScale.Crop,
+                error = painterResource(R.drawable.ic_no_image),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.outline,
+                        shape = RoundedCornerShape(16.dp)
+                    )
             )
+
+            Divider()
+
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = product.name,
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.weight(8f)
+                )
+                Text(
+                    text = product.quantity,
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.weight(2f)
+                )
+            }
+
+            Divider()
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = product.brand,
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.weight(7f)
+                )
+                Image(
+                    painter = painterResource(id = product.nutriScore.imageRes),
+                    contentDescription = null,
+                    modifier = Modifier.weight(3f)
+                )
+            }
+
+            Divider()
+
+            IngredientsSection(ingredients = product.ingredients)
+
+            NutrimentsTable(nutriments = product.nutriments)
         }
-
-        Divider()
-
-        IngredientsSection(ingredients = product.ingredients)
-
-        NutrimentsTable(nutriments = product.nutriments)
     }
 }

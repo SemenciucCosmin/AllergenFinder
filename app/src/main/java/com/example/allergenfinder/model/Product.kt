@@ -1,7 +1,5 @@
 package com.example.allergenfinder.model
 
-import androidx.compose.ui.graphics.Color
-
 data class Product(
     val barcode: String,
     val allergens: List<String>,
@@ -14,12 +12,19 @@ data class Product(
     val nutriments: Nutriments,
     val nutriScore: NutriScore,
     val quantity: String,
-)
+) {
+    val hasAllergens: Boolean
+        get() = allergens.isNotEmpty() || ingredients.map { it.isAllergen }.any { it }
+
+    val hasMatchingAllergens: Boolean
+        get() = ingredients.map { it.isMatchingAllergen }.any { it }
+}
 
 data class Ingredient(
     val name: String,
     val percentEstimate: Float,
-    val warningColor: Color = Color.Gray,
+    val isAllergen: Boolean = false,
+    val isMatchingAllergen: Boolean = false
 ) {
     val formattedText: String
         get() = "$name $percentEstimate%"

@@ -9,17 +9,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.allergenfinder.model.Ingredient
 
 @Composable
 fun IngredientChip(ingredient: Ingredient) {
+    val outlineColor = when {
+        ingredient.isMatchingAllergen -> Color.Red
+        ingredient.isAllergen -> Color.Yellow
+        else -> Color.Gray
+    }
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .border(
                 width = 1.dp,
-                color = ingredient.warningColor,
+                color = outlineColor,
                 shape = RoundedCornerShape(30.dp)
             )
     ) {

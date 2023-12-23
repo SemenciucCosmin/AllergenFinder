@@ -1,4 +1,4 @@
-package com.example.allergenfinder.presentation.ui.components
+package com.example.allergenfinder.presentation.ui.routes.product.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.allergenfinder.model.Nutriments
+import com.example.allergenfinder.presentation.ui.components.TableCell
 
 @Composable
 fun NutrimentsTable(nutriments: Nutriments) {

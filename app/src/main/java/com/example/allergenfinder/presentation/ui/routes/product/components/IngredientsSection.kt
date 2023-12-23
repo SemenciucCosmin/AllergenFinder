@@ -1,4 +1,4 @@
-package com.example.allergenfinder.presentation.ui.components
+package com.example.allergenfinder.presentation.ui.routes.product.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
@@ -31,6 +31,7 @@ import com.example.allergenfinder.common.MAX_INGREDIENTS_SECTION_HEIGHT
 import com.example.allergenfinder.common.maxHeightIf
 import com.example.allergenfinder.common.toPx
 import com.example.allergenfinder.model.Ingredient
+import com.example.allergenfinder.presentation.ui.components.IngredientChip
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
