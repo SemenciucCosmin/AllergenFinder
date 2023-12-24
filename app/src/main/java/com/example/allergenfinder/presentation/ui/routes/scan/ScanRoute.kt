@@ -1,5 +1,7 @@
 package com.example.allergenfinder.presentation.ui.routes.scan
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.IconButton
@@ -9,12 +11,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.layoutId
+import androidx.core.content.ContextCompat
 import com.example.allergenfinder.R
 import com.example.allergenfinder.common.BARCODE_ARGUMENT_KEY
 import com.example.allergenfinder.navigation.LocalNavController
@@ -30,6 +34,7 @@ private const val TEXT_FIELD_CONSTRAINT = "text_field"
 fun ScanRoute() {
     val navController = LocalNavController.current
     val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
     var cameraTorchIsOn by remember { mutableStateOf(false) }
     val onBarcodeReceived = { barcode: String ->
         if (navController.currentDestination?.route != NavigationDestination.Product.route) {
@@ -43,6 +48,14 @@ fun ScanRoute() {
             )
         }
     }
+    val hasCameraPermission by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        )
+    }
 
     ConstraintLayout(
         constraintSet = constraintSet(),
@@ -51,6 +64,7 @@ fun ScanRoute() {
         ScannerScreen(
             modifier = Modifier.layoutId(SCANNER_SCREEN_CONSTRAINT),
             cameraTorchIsOn = cameraTorchIsOn,
+            hasCameraPermission = hasCameraPermission,
             onBarcodeReceived = onBarcodeReceived
         )
 
@@ -59,18 +73,20 @@ fun ScanRoute() {
             onBarcodeReceived = onBarcodeReceived
         )
 
-        IconButton(
-            modifier = Modifier.layoutId(TORCH_BUTTON_CONSTRAINT),
-            onClick = { cameraTorchIsOn = !cameraTorchIsOn }
-        ) {
-            Image(
-                painter = if (cameraTorchIsOn) {
-                    painterResource(R.drawable.ic_torch_on)
-                } else {
-                    painterResource(R.drawable.ic_torch_off)
-                },
-                contentDescription = null
-            )
+        if (hasCameraPermission) {
+            IconButton(
+                modifier = Modifier.layoutId(TORCH_BUTTON_CONSTRAINT),
+                onClick = { cameraTorchIsOn = !cameraTorchIsOn }
+            ) {
+                Image(
+                    painter = if (cameraTorchIsOn) {
+                        painterResource(R.drawable.ic_torch_on)
+                    } else {
+                        painterResource(R.drawable.ic_torch_off)
+                    },
+                    contentDescription = null
+                )
+            }
         }
     }
 }

@@ -1,15 +1,10 @@
 package com.example.allergenfinder.presentation.ui.routes.scan.components
 
 
-import android.Manifest
-import android.content.pm.PackageManager
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.CornerRadius
@@ -18,26 +13,15 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 
 @Composable
 fun ScannerScreen(
     modifier: Modifier,
     cameraTorchIsOn: Boolean,
+    hasCameraPermission: Boolean,
     onBarcodeReceived: (String) -> Unit
 ) {
-    val context = LocalContext.current
-    val hasCameraPermission by remember {
-        mutableStateOf(
-            ContextCompat.checkSelfPermission(
-                context,
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED
-        )
-    }
-
     Scaffold(modifier = modifier) { paddingValues ->
         Box(
             modifier = Modifier
