@@ -77,15 +77,15 @@ fun IngredientDto.toIngredient(): Ingredient? {
 
 fun NutrimentsDto.toNutriments(): Nutriments? {
     return Nutriments(
-        carbohydrates = carbohydrates ?: return null,
-        energyKcal = energyKcal ?: return null,
-        fat = fat ?: return null,
-        fiber = fiber ?: return null,
-        proteins = proteins ?: return null,
-        salt = salt ?: return null,
-        saturatedFat = saturatedFat ?: return null,
-        sodium = sodium ?: return null,
-        sugars = sugars ?: return null
+        carbohydrates = carbohydrates?.roundToOneDecimalPlace() ?: return null,
+        energyKcal = energyKcal?.roundToOneDecimalPlace() ?: return null,
+        fat = fat?.roundToOneDecimalPlace() ?: return null,
+        fiber = fiber?.roundToOneDecimalPlace() ?: return null,
+        proteins = proteins?.roundToOneDecimalPlace() ?: return null,
+        salt = salt?.roundToOneDecimalPlace() ?: return null,
+        saturatedFat = saturatedFat?.roundToOneDecimalPlace() ?: return null,
+        sodium = sodium?.roundToOneDecimalPlace() ?: return null,
+        sugars = sugars?.roundToOneDecimalPlace() ?: return null
     )
 }
 

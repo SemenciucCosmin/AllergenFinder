@@ -7,6 +7,9 @@ import com.example.allergenfinder.data.datasource.dao.ProductDao
 import com.example.allergenfinder.data.network.Resource
 import com.example.allergenfinder.domain.repository.ProductRepository
 import com.example.allergenfinder.model.Product
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
 val allAllergens = listOf(
     "peanuts",
@@ -48,8 +51,19 @@ class ProductRepositoryImpl(
                 isMatchingAllergen = userAllergens.contains(ingredient.name)
             )
         }
-        val newProduct = product.copy(ingredients = ingredientsWithAllergens)
-        val productEntity = newProduct.toProductWithIngredientsEntity()
-        return Resource.Success(newProduct)
+        val productWithAllergens = product.copy(ingredients = ingredientsWithAllergens)
+        saveProduct(productWithAllergens)
+        return Resource.Success(productWithAllergens)
+    }
+
+    override suspend fun getProducts() = withContext(Dispatchers.IO) {
+        productDao.getProducts().map { it.map { productEntity -> productEntity.toProduct() } }
+    }
+
+    private suspend fun saveProduct(product: Product) {
+        withContext(Dispatchers.IO) {
+            val productEntity = product.toProductWithIngredientsEntity()
+            productDao.addProductWithIngredients(productEntity)
+        }
     }
 }

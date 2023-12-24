@@ -5,7 +5,7 @@ import androidx.room.Entity
 
 @Entity(
     tableName = "allergens",
-    primaryKeys = ["productId"]
+    primaryKeys = ["name", "productId"]
 )
 data class AllergenEntity(
     @ColumnInfo(name = "productId") val productId: String,
