@@ -41,7 +41,7 @@ fun BarcodeTextField(modifier: Modifier, onBarcodeReceived: (String) -> Unit) {
             value = barcodeText,
             onValueChange = { barcodeText = it },
             singleLine = true,
-            placeholder = { Text(stringResource(R.string.lbl_placeholder_enter_barcode_manually)) },
+            placeholder = { Text(stringResource(R.string.lbl_barcode_text_field_placeholder)) },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             keyboardActions = KeyboardActions(onSearch = { onBarcodeReceived(barcodeText) }),
             shape = RoundedCornerShape(24.dp),
