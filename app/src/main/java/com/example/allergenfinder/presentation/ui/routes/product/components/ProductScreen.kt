@@ -1,8 +1,10 @@
 package com.example.allergenfinder.presentation.ui.routes.product.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,7 +13,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -22,7 +26,6 @@ import coil.compose.AsyncImage
 import com.example.allergenfinder.R
 import com.example.allergenfinder.model.Product
 import com.example.allergenfinder.presentation.ui.components.OutlineGradientBox
-import com.example.allergenfinder.presentation.ui.components.ProductMainDescription
 
 @Composable
 fun ProductScreen(product: Product) {
@@ -62,14 +65,39 @@ fun ProductScreen(product: Product) {
 
             Divider()
 
-            ProductMainDescription(
-                productName = product.name,
-                productQuantity = product.quantity,
-                productBrand = product.brand,
-                productNutriScore = product.nutriScore,
-                headerStyle = MaterialTheme.typography.headlineMedium,
-                labelsStyle = MaterialTheme.typography.headlineSmall
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = product.name,
+                    style = MaterialTheme.typography.headlineMedium,
+                    modifier = Modifier.weight(8f)
+                )
+                Text(
+                    text = product.quantity,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.weight(2f)
+                )
+            }
+
+            Divider()
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = product.brand,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.weight(7f)
+                )
+                Image(
+                    painter = painterResource(product.nutriScore.imageRes),
+                    contentDescription = null,
+                    modifier = Modifier.weight(3f)
+                )
+            }
 
             Divider()
 

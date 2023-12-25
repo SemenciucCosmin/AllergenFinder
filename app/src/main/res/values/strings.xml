@@ -6,9 +6,6 @@
     <!--    GENERAL    -->
     <string name="app_name">AllergenFinder</string>
     <string name="lbl_ok">OK</string>
-    <string name="lbl_barcode_text_field_placeholder">Enter barcode manually</string>
-    <string name="lbl_no_recent_products">No recent products.</string>
-
 
     <!--    PERMISSIONS    -->
     <string name="lbl_permission_dialog_grant">Grant permission</string>
@@ -20,4 +17,13 @@
     <string name="lbl_route_history">History</string>
     <string name="lbl_route_scan">Scan</string>
     <string name="lbl_route_preferences">Preferences</string>
+
+    <!--    HISTORY ROUTE    -->
+    <string name="lbl_no_recent_products">No recent products.</string>
+    <string name="lbl_recent_products_label">Recently scanned products</string>
+    <string name="lbl_recent_products_description">Tap on any of the products to see its full details</string>
+
+    <!--    SCAN ROUTE    -->
+    <string name="lbl_barcode_text_field_placeholder">Enter barcode manually</string>
+
 </resources>

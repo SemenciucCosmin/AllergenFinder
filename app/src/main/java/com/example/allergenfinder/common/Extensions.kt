@@ -63,7 +63,8 @@ fun ProductDto.toProduct(): Product? {
         ingredients = productInfo.ingredients?.mapNotNull { it.toIngredient() } ?: return null,
         nutriments = productInfo.nutriments?.toNutriments() ?: return null,
         nutriScore = NutriScore.getNutriScoreByGrade(productInfo.nutriScoreGrade),
-        quantity = productInfo.quantity ?: return null
+        quantity = productInfo.quantity ?: return null,
+        timestamp = System.currentTimeMillis()
     )
 }
 
@@ -107,7 +108,7 @@ fun Product.toProductWithIngredientsEntity(): ProductWithIngredients {
             sugars = nutriments.sugars,
             nutriScoreGrade = nutriScore.grade,
             quantity = quantity,
-            timestamp = System.currentTimeMillis()
+            timestamp = timestamp
         ),
         allergens = allergens.map { AllergenEntity(it, id) },
         ingredients = ingredients.map { it.toIngredientEntity(id) }
@@ -144,7 +145,8 @@ fun ProductWithIngredients.toProduct(): Product {
             sugars = productEntity.sugars
         ),
         nutriScore = NutriScore.getNutriScoreByGrade(productEntity.nutriScoreGrade),
-        quantity = productEntity.quantity
+        quantity = productEntity.quantity,
+        timestamp = productEntity.timestamp
     )
 }
 
