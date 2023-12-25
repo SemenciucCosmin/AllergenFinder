@@ -106,7 +106,8 @@ fun Product.toProductWithIngredientsEntity(): ProductWithIngredients {
             sodium = nutriments.sodium,
             sugars = nutriments.sugars,
             nutriScoreGrade = nutriScore.grade,
-            quantity = quantity
+            quantity = quantity,
+            timestamp = System.currentTimeMillis()
         ),
         allergens = allergens.map { AllergenEntity(it, id) },
         ingredients = ingredients.map { it.toIngredientEntity(id) }

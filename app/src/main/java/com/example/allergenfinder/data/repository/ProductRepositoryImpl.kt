@@ -57,7 +57,11 @@ class ProductRepositoryImpl(
     }
 
     override suspend fun getProducts() = withContext(Dispatchers.IO) {
-        productDao.getProducts().map { it.map { productEntity -> productEntity.toProduct() } }
+        productDao.getProducts().map { productEntities ->
+            productEntities
+                .sortedByDescending { it.productEntity.timestamp }
+                .map { productEntity -> productEntity.toProduct() }
+        }
     }
 
     private suspend fun saveProduct(product: Product) {

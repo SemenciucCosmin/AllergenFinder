@@ -20,5 +20,6 @@ data class ProductEntity(
     @ColumnInfo(name = "sodium") val sodium: Float,
     @ColumnInfo(name = "sugars") val sugars: Float,
     @ColumnInfo(name = "nutriScoreGrade") val nutriScoreGrade: String,
-    @ColumnInfo(name = "quantity") val quantity: String
+    @ColumnInfo(name = "quantity") val quantity: String,
+    @ColumnInfo(name = "timestamp") val timestamp: Long
 )
