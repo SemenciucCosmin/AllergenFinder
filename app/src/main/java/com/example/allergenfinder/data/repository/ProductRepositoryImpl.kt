@@ -64,6 +64,10 @@ class ProductRepositoryImpl(
         }
     }
 
+    override suspend fun removeProduct(productId: String) = withContext(Dispatchers.IO) {
+        productDao.deleteProductWithIngredients(productId)
+    }
+
     private suspend fun saveProduct(product: Product) {
         withContext(Dispatchers.IO) {
             val productEntity = product.toProductWithIngredientsEntity()

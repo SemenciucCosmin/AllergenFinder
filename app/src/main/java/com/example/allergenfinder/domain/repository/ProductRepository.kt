@@ -8,4 +8,6 @@ interface ProductRepository {
     suspend fun fetchProduct(barcode: String): Resource<Product>
 
     suspend fun getProducts(): Flow<List<Product>>
+
+    suspend fun removeProduct(productId: String)
 }

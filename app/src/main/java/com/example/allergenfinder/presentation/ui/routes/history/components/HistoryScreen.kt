@@ -20,7 +20,8 @@ import com.example.allergenfinder.model.Product
 @Composable
 fun HistoryScreen(
     products: List<Product>,
-    onProductClick: (Product) -> Unit
+    onProductClick: (Product) -> Unit,
+    onProductRemove: (String) -> Unit
 ) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
@@ -47,10 +48,14 @@ fun HistoryScreen(
 
         item { Divider() }
 
-        items(products) { product ->
+        items(
+            items = products,
+            key = { it.id }
+        ) { product ->
             ProductItem(
                 product = product,
-                onClick = { onProductClick(product) }
+                onClick = { onProductClick(product) },
+                onRemove = { onProductRemove(product.id) }
             )
         }
     }

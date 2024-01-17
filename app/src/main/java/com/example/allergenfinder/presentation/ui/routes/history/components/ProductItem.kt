@@ -1,101 +1,84 @@
 package com.example.allergenfinder.presentation.ui.routes.history.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateIntOffsetAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.example.allergenfinder.R
 import com.example.allergenfinder.model.Product
+import kotlinx.coroutines.delay
+import kotlin.math.roundToInt
+import kotlin.system.exitProcess
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductItem(
     product: Product,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onRemove: () -> Unit,
 ) {
-    ElevatedCard(
-        onClick = onClick,
-        shape = RoundedCornerShape(16.dp),
-        modifier = Modifier.border(
-            width = 2.dp,
-            color = MaterialTheme.colorScheme.outline,
-            shape = RoundedCornerShape(16.dp)
+    val pxToMove = with(LocalDensity.current) { 500.dp.toPx().roundToInt() }
+    var removeTimerOn by remember { mutableStateOf(false) }
+    var removeTimerCompleted by remember { mutableStateOf(false) }
+    val animationOffset by animateIntOffsetAsState(
+        targetValue = when {
+            removeTimerOn -> IntOffset(pxToMove, 0)
+            else -> IntOffset.Zero
+        },
+        label = "offset"
+    )
+
+    LaunchedEffect(key1 = removeTimerOn) {
+        if (removeTimerOn) {
+            delay(1000)
+            removeTimerCompleted = true
+            delay(200)
+            onRemove()
+        } else {
+            removeTimerCompleted = false
+        }
+    }
+
+    AnimatedVisibility(
+        visible = !removeTimerCompleted,
+        exit = shrinkVertically(
+            animationSpec = tween(300),
+            shrinkTowards = Alignment.Top
         )
     ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier
-                .padding(10.dp)
-                .height(IntrinsicSize.Min)
-        ) {
-
-            AsyncImage(
-                model = product.imageUrl,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                error = painterResource(R.drawable.ic_no_image),
-                modifier = Modifier
-                    .clip(RoundedCornerShape(16.dp))
-                    .fillMaxHeight()
-                    .weight(3f)
-            )
-
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(7f)
+        Box(contentAlignment = Alignment.Center) {
+            OutlinedButton(
+                onClick = { removeTimerOn = false },
+                shape = RoundedCornerShape(8.dp)
             ) {
                 Text(
-                    text = product.name,
-                    style = MaterialTheme.typography.titleLarge
+                    text = stringResource(R.string.lbl_undo),
+                    modifier = Modifier.padding(4.dp)
                 )
-
-                Text(
-                    text = product.brand,
-                    style = MaterialTheme.typography.titleMedium
-                )
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = product.quantity,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-
-                        Text(
-                            text = product.date,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
-
-                    Image(
-                        painter = painterResource(product.nutriScore.imageRes),
-                        contentDescription = null
-                    )
-                }
             }
+            
+            ProductItemContent(
+                product = product,
+                animationOffset = animationOffset,
+                onClick = onClick,
+                onRemove = { removeTimerOn = true }
+            )
         }
     }
 }

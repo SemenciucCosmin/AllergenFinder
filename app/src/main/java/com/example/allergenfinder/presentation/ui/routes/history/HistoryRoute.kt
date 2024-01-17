@@ -74,7 +74,8 @@ fun HistoryRoute() {
                 coroutineScope.launch {
                     showBottomSheet = true
                 }
-            }
+            },
+            onProductRemove = productViewModel::removeProduct
         )
     }
 

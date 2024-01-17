@@ -51,4 +51,12 @@ class ProductViewModel(private val productRepository: ProductRepository) : ViewM
             }
         }
     }
+
+    fun removeProduct(productId: String) {
+        viewModelScope.launch { productRepository.removeProduct(productId) }
+    }
+
+    fun undoRemoveProduct(productId: String) {
+
+    }
 }
