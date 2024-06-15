@@ -22,3 +22,8 @@ The app allows users to manage their allergy profiles, scan food item barcodes, 
 **• Allergy Detection:** Developed logic to match and highlight allergens based on user profiles.<br />
 **• Data Handling and Storage:** Ensured efficient handling and storage of product information for quick future references.<br />
 
+<p float="left">
+  <img src="https://github.com/SemenciucCosmin/AllergenFinder/blob/main/screenshots/AllergenFinder_History.jpeg" width="180">
+  <img src="https://github.com/SemenciucCosmin/AllergenFinder/blob/main/screenshots/AllergenFinder_Product_Details.jpeg" width="180">
+  <img src="https://github.com/SemenciucCosmin/AllergenFinder/blob/main/screenshots/AllergenFinder_Scanner.jpeg" width="180">
+</p>
